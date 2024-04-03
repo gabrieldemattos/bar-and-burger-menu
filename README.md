@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🍔 Cardápio - Bar e Hamburgueria
 
-## Getting Started
+## Sobre o Projeto 💻
 
-First, run the development server:
+O Cardápio do "Bar e Hamburgueria" é uma aplicação que permite aos clientes visualizar o menu, adicionar itens ao carrinho e enviar um pedido diretamente para o WhatsApp da loja. Além disso, os clientes podem especificar se desejam retirar no balcão ou solicitar entrega, fornecendo informações de endereço e forma de pagamento, se necessário.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Nota: Este projeto foi originalmente desenvolvido como um projeto local de estudo e portanto não possui histórico de commits disponível.**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Funcionalidades Principais 📝
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### ⏰ Horários de Abertura e Fechamento em Tempo Real
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Os horários de abertura e fechamento do restaurante são exibidos em tempo real, utilizando a API da WorldTime. Essas informações são atualizadas automaticamente sempre que o restaurante abre ou fecha, graças ao uso de um contexto.
 
-## Learn More
+### 📬 Preenchimento Automático do Endereço
 
-To learn more about Next.js, take a look at the following resources:
+Ao preencher o endereço para entrega, a aplicação utiliza a API ViaCEP para buscar o CEP do usuário e preencher automaticamente os outros dados do endereço.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 📱 Interface Responsiva
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+A interface é totalmente responsiva, adaptando-se ao dispositivo do usuário. O menu com as seções e o campo de busca mudam dinamicamente de acordo com o dispositivo, proporcionando uma experiência consistente e intuitiva.
 
-## Deploy on Vercel
+## Tecnologias Utilizadas 🚀
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- [React](https://react.dev/): Biblioteca JavaScript para construção de interfaces de usuário.
+- [Next.js](https://nextjs.org/): Framework React para construção de aplicações web que oferece renderização do lado do servidor (SSR), geração estática (SSG), entre muitos outros recursos.
+- [TypeScript](https://www.typescriptlang.org/): Linguagem de programação.
+- [Tailwind CSS](https://tailwindcss.com/): Framework CSS para estilização que oferece várias classes para utilização já pré-estilizadas.
+- [React Hook Form](https://react-hook-form.com/): Biblioteca para gerenciamento de formulários em aplicações React.
+- [Zod](https://github.com/colinhacks/zod): Biblioteca de validação de esquemas para TypeScript e JavaScript.
+- [Lucide React Icons](https://lucide.dev/): Biblioteca de ícones para React.
+- [React Toastify](https://www.npmjs.com/package/react-toastify): Componente para exibição de notificações.
+- [Shadcn](https://ui.shadcn.com/): Biblioteca UI de componentes reutilizáveis.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Instalação ⚙️
+
+Para instalar o projeto localmente, siga os passos abaixo:
+
+1. Clone este repositório.
+2. Instale as dependências utilizando `npm install`.
+3. Execute o aplicativo utilizando `npm run dev`.
+
+## Imagens Relevantes 🖼️
+
+### Página Inicial (Desktop)
+
+Esta é a página inicial da aplicação em um ambiente de desktop.
+
+![Home Page](screenshots/home-desktop.gif)
+
+### Página Inicial (Mobile)
+
+Página inicial da aplicação em um dispositivo móvel, destacando o menu que se adapta de acordo com a seção explorada pelo usuário.
+
+![Home Page (Mobile)](screenshots/home-mobile.gif)
+
+### Detalhes do Produto
+
+Página de detalhes do produto, onde os clientes podem ver mais informações sobre um item específico do menu.
+
+![Product Detail Page](screenshots/product-detail.png)
+
+### Página de Entrega
+
+Página onde os clientes preenchem os dados para entrega, incluindo endereço e forma de pagamento.
+
+![Delivery Page](screenshots/delivery-page.png)
