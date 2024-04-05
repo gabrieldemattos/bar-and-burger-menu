@@ -1,6 +1,12 @@
 "use client";
 
-import { Dispatch, ReactNode, createContext, useReducer } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  createContext,
+  useEffect,
+  useReducer,
+} from "react";
 import { ICartItem } from "@/interfaces/CartItem";
 
 // Definindo o tipo para o estado do contexto
@@ -73,7 +79,22 @@ export const CartContext = createContext<{
 
 // Provedor de Contexto do Carrinho
 export const CartContextProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(cartReducer, { cart: [] });
+  const initialState = { cart: [] };
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    const cartData = localStorage.getItem("cart");
+    if (cartData) {
+      const parsedCartData: ICartItem[] = JSON.parse(cartData);
+      parsedCartData.forEach((item) => {
+        dispatch({ type: "increment", payload: item });
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
 
   const totalItems = state.cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
