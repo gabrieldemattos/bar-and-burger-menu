@@ -38,6 +38,7 @@ const ModalDeleteConfirmation = ({
         <div className="flex justify-between">
           <Button
             text="Excluir"
+            data-testid="delete-button"
             variant="destructive"
             onClick={!name ? removeAllProductsCart : removeOneProduct}
           />

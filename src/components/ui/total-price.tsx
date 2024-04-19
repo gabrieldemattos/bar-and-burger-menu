@@ -6,7 +6,7 @@ const TotalPrice = () => {
   const { totalPrice, totalItems } = useCartContext();
 
   return (
-    <p className="font-bold xl:text-lg">
+    <p className="font-bold xl:text-lg" data-testid="total-price">
       Total: {formatCurrency(totalPrice)}{" "}
       <span className="text-sm text-gray-500 font-normal xl:text-base">
         / {totalItems} {totalItems > 1 ? "itens" : "item"}
