@@ -22,7 +22,7 @@ const Footer = () => {
 
   return (
     <div>
-      <ModalCart openCart={openCart} onclick={cartModal} />
+      <ModalCart openModalCart={openCart} onclick={cartModal} />
       <ModalClosedRestaurant
         openCart={openClosedRestaurant}
         onclick={closedRestaurantModal}
@@ -30,7 +30,8 @@ const Footer = () => {
 
       <footer
         data-open={isOpen}
-        className="fixed bottom-0 w-full bg-red-500 text-white data-[open=false]:bg-gray-300 data-[open=false]:text-gray-400 py-3 z-40 flex items-center justify-center"
+        data-testid="footer"
+        className="cursor-pointer fixed bottom-0 w-full text-white data-[open=true]:bg-cyan-500 data-[open=false]:bg-gray-300 data-[open=false]:text-gray-400 py-3 z-40 flex items-center justify-center"
         onClick={isOpen ? cartModal : closedRestaurantModal}
       >
         <button className="flex gap-2 font-bold">
