@@ -233,6 +233,7 @@ const DeliveryPage = () => {
               label="CEP"
               errors={errors.zipCode?.message}
               disabled={loading}
+              aria-label="zipCode"
               maxLength={8}
               placeholder="Digite apenas os 8 dígitos do seu CEP"
               {...register("zipCode")}
@@ -242,6 +243,7 @@ const DeliveryPage = () => {
               <div className="w-full md:w-[60%]">
                 <Input
                   label="Endereço"
+                  aria-label="address"
                   disabled={loading}
                   placeholder="Digite seu endereço completo"
                   errors={errors.address?.message}
@@ -252,6 +254,7 @@ const DeliveryPage = () => {
               <div className="w-full md:w-[40%]">
                 <Input
                   label="Número"
+                  aria-label="number"
                   placeholder="Digite o número da residência"
                   errors={errors.number?.message}
                   {...register("number")}
@@ -262,6 +265,7 @@ const DeliveryPage = () => {
             <Input
               label="Bairro"
               disabled={loading}
+              aria-label="neighborhood"
               placeholder="Digite o nome do bairro"
               errors={errors.nighborhood?.message}
               {...register("nighborhood")}
@@ -270,6 +274,7 @@ const DeliveryPage = () => {
             <Input
               label="Cidade"
               disabled={loading}
+              aria-label="city"
               placeholder="Digite o nome da cidade"
               errors={errors.city?.message}
               {...register("city")}
@@ -332,16 +337,23 @@ const DeliveryPage = () => {
                 <InputRadio
                   text="Dinheiro"
                   disabled={loading}
+                  aria-label="payment-money"
                   id="payment-money"
                   value="dinheiro"
                   error={errors.payment && true}
                   {...register("payment")}
                 />
-
-                <p className="text-red-500">
-                  {errors.payment && errors.payment?.message}
-                </p>
               </div>
+
+              {errors.payment && (
+                <p
+                  className="text-red-500"
+                  role="alert"
+                  aria-label="payment-error-message"
+                >
+                  {errors.payment?.message}
+                </p>
+              )}
 
               {payment === "dinheiro" && (
                 <div className="flex flex-col">
@@ -352,7 +364,8 @@ const DeliveryPage = () => {
 
                     <input
                       data-error={errors.change}
-                      id="payment-money"
+                      role="input"
+                      aria-label="change-input"
                       disabled={loading}
                       type="number"
                       pattern="[0-9]+([,\.][0-9]+)?"
@@ -364,9 +377,13 @@ const DeliveryPage = () => {
                     />
                   </div>
 
-                  {errors.change && (
-                    <p className="text-red-500">{errors.change?.message}</p>
-                  )}
+                  <p
+                    className="text-red-500"
+                    role="alert"
+                    aria-label="change-error-message"
+                  >
+                    {errors.change?.message}
+                  </p>
                 </div>
               )}
             </div>
@@ -374,6 +391,7 @@ const DeliveryPage = () => {
             <div className="flex justify-between">
               <Button
                 text="Enviar Pedido"
+                aria-label="button-submit"
                 type="submit"
                 variant="submit"
                 disabled={loading || isOpen === false}
