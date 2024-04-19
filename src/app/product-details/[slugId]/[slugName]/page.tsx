@@ -3,7 +3,6 @@
 import Header from "@/components/ui/header";
 import ModalClosedRestaurant from "@/components/ui/modal-closed-restaurant";
 import { PRODUCTS } from "@/app/constants/products-info";
-import { useCartContext } from "@/app/hooks/useCartContext";
 import { useTimeContext } from "@/app/hooks/useTimeContext";
 import NotFound from "@/app/not-found";
 import { Separator } from "@/components/ui/separator";
