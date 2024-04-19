@@ -24,7 +24,9 @@ A interface é totalmente responsiva, adaptando-se ao dispositivo do usuário. O
 
 - [React](https://react.dev/): Biblioteca JavaScript para construção de interfaces de usuário.
 - [Next.js](https://nextjs.org/): Framework React para construção de aplicações web que oferece renderização do lado do servidor (SSR), geração estática (SSG), entre muitos outros recursos.
-- [TypeScript](https://www.typescriptlang.org/): Linguagem de programação.
+- [TypeScript](https://www.typescriptlang.org/): Superset de JavaScript que adiciona tipagem estática opcional.
+- [Jest](https://jestjs.io/): Framework de teste em JavaScript projetado para garantir a correção de qualquer código JavaScript.
+- [React Testing Library](https://testing-library.com/): Poderosa ferramenta para simplificar o teste de componentes React.
 - [Tailwind CSS](https://tailwindcss.com/): Framework CSS para estilização que oferece várias classes para utilização já pré-estilizadas.
 - [React Hook Form](https://react-hook-form.com/): Biblioteca para gerenciamento de formulários em aplicações React.
 - [Zod](https://github.com/colinhacks/zod): Biblioteca de validação de esquemas para TypeScript e JavaScript.
