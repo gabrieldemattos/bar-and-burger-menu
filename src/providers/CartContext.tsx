@@ -98,9 +98,10 @@ export const CartContextProvider = ({ children }: { children: ReactNode }) => {
 
   const totalItems = state.cart.reduce((acc, curr) => acc + curr.quantity, 0);
 
-  const totalPrice = state.cart.reduce(
-    (acc, curr) => acc + curr.price * curr.quantity,
-    0
+  const totalPrice = Number(
+    state.cart
+      .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+      .toFixed(2)
   );
 
   return (
