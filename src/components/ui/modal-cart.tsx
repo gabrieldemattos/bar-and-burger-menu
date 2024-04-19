@@ -16,14 +16,14 @@ import ModalDeleteConfirmation from "./modal-delete-confirmation";
 import { IDeleteConfirmation } from "@/interfaces/DeleteConfirmation";
 
 interface ModalCartProps {
-  openCart: boolean;
+  openModalCart: boolean;
   onclick: () => void;
 }
 
 interface IDeleteConfirmationModified
   extends Omit<IDeleteConfirmation, "onClose"> {}
 
-const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
+const ModalCart = ({ openModalCart = false, onclick }: ModalCartProps) => {
   const { state, dispatch } = useCartContext();
 
   const [errorDeliveryOption, setErrorDeliveryOption] =
@@ -39,11 +39,16 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
 
   const router = useRouter();
 
-  if (!isOpen) openCart = false;
+  if (!isOpen) openModalCart = false;
 
   useEffect(() => {
-    if (openCart === false) setOrderDeliveryOption("");
-  }, [openCart]);
+    if (!openModalCart) {
+      setOrderDeliveryOption("");
+      setErrorDeliveryOption(false);
+      return;
+    }
+  }, [openModalCart]);
+
   const increment = (
     id: number,
     image: string,
@@ -80,8 +85,10 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
     });
   };
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!orderDeliveryOption) return setErrorDeliveryOption(true);
 
     if (orderDeliveryOption === "delivery") {
       router.push("/delivery");
@@ -90,8 +97,6 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
     }
 
     if (!isOpen) return;
-
-    if (orderDeliveryOption === "") return setErrorDeliveryOption(true);
 
     pickUpOption(state.cart, observations ?? ""); //CONSTANTS
   };
@@ -117,7 +122,7 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
 
   return (
     <div
-      data-cart-open={openCart}
+      data-cart-open={openModalCart}
       className="bg-black/50 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center data-[cart-open=true]:flex data-[cart-open=false]:hidden"
     >
       <div className="bg-white p-5 rounded-md min-w-[80%] max-w-[95%] min-h-[40%] max-h-[70%] overflow-y-auto flex flex-col justify-between md:min-w-[60%] lg:min-w-[40%]">
@@ -172,11 +177,15 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
                         text="-"
                       />
 
-                      <p className="text-center bg-white px-3">
+                      <p
+                        className="text-center bg-white px-3"
+                        data-testid="quantity"
+                      >
                         {item.quantity}
                       </p>
 
                       <QuantityControlButton
+                        data-testid="increment-button"
                         onClick={() =>
                           increment(
                             item.id,
@@ -199,6 +208,7 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
                 <TotalPrice />
 
                 <div
+                  data-testid="clear-cart"
                   className="flex items-center gap-1 text-red-400 cursor-pointer hover:text-red-500 duration-200 transition-all hover:underline underline-offset-1"
                   onClick={removeAll}
                 >
@@ -255,13 +265,16 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
                 </div>
 
                 {errorDeliveryOption && (
-                  <p className="text-center mt-1 text-red-500 font-medium text-sm">
-                    selecione uma das opções acima
+                  <p
+                    className="text-center mt-1 text-red-500 font-medium text-sm"
+                    data-testid="selection-alert"
+                  >
+                    Selecione uma das opções acima.
                   </p>
                 )}
               </div>
 
-              <form onSubmit={onSubmit}>
+              <form onSubmit={handleSubmit} data-testid="submit-order-form">
                 <div className="flex justify-between items-center mt-4 w-full">
                   <Button
                     text="Fechar"
@@ -280,7 +293,7 @@ const ModalCart = ({ openCart = false, onclick }: ModalCartProps) => {
               </form>
             </>
           ) : (
-            <p className="text-center">
+            <p className="text-center font-medium" data-testid="empty-cart">
               Seu carrinho está vazio! Adicione alguns itens.
             </p>
           )}
