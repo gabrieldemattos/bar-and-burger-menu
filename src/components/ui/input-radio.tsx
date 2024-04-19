@@ -9,7 +9,12 @@ const InputRadio = forwardRef<HTMLInputElement, InputRadioProps>(
   ({ text, error = false, ...props }, ref) => {
     return (
       <div className="flex items-center gap-1">
-        <input type="radio" className="w-4 h-4" ref={ref} {...props} />
+        <input
+          type="radio"
+          className="w-4 h-4 cursor-pointer"
+          ref={ref}
+          {...props}
+        />
         <span data-error={error} className="data-[error=true]:text-red-500">
           {text}
         </span>
